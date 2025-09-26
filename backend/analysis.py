@@ -2,7 +2,7 @@ from whisper_transcribe import transcribe_audio
 from ollama_llm import analyze_transcript
 from chroma_index import index_transcript
 from database import SessionLocal
-from models import Meeting
+from model import Meeting
 
 def process_meeting_file(filepath, filename):
     transcript = transcribe_audio(filepath)
