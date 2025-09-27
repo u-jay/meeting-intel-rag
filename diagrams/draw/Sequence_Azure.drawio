@@ -1,0 +1,100 @@
+<mxfile host="Electron" modified="2025-09-27T09:58:38.602Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" version="23.1.5" etag="1McTpOY8S8KyY-EyWATl" type="device">
+  <diagram id="seq-azure" name="Sequence Diagram (Azure)">
+    <mxGraphModel dx="1457" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="L1" value="User" style="shape=umlLifeline;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="60" y="20" width="120" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="L2" value="React (Azure Static Web Apps)" style="shape=umlLifeline;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="20" width="160" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="L3" value="API Gateway (APIM)" style="shape=umlLifeline;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="440" y="20" width="160" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="L4" value="RAG Orchestrator (AKS/Functions)" style="shape=umlLifeline;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="640" y="20" width="180" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="L5" value="Vector Index (Azure AI Search)" style="shape=umlLifeline;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="860" y="20" width="200" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="L6" value="LLM (Azure OpenAI)" style="shape=umlLifeline;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="20" width="160" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="L7" value="Speech-to-Text (Azure AI Speech)" style="shape=umlLifeline;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1280" y="20" width="220" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="L8" value="Storage (Blob)" style="shape=umlLifeline;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1520" y="20" width="150" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="M1" value="1. Upload media / Request insights" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;entryX=0.501;entryY=0.501;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.533;exitY=0.499;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="L1" target="L2" edge="1">
+          <mxGeometry x="0.0048" y="30" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M2" value="2. API call (JWT/MSAL)" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;entryX=0.513;entryY=0.499;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.501;exitY=0.501;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="L2" target="L3" edge="1">
+          <mxGeometry x="0.0071" y="40" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M3" value="3. Route to RAG service" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;exitX=0.507;exitY=0.501;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="L3" edge="1">
+          <mxGeometry x="-0.0503" y="21" relative="1" as="geometry">
+            <mxPoint x="720" y="280" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M4" value="4. Retrieve context (similarity search)" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;entryX=0.5;entryY=0.501;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.504;exitY=0.501;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="L4" target="L5" edge="1">
+          <mxGeometry y="20" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M5" value="5. Generate/augment prompt" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;entryX=0.483;entryY=0.731;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.53;exitY=0.731;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="L4" target="L6" edge="1">
+          <mxGeometry x="-0.2857" y="-30" relative="1" as="geometry">
+            <mxPoint x="810" y="400" as="sourcePoint" />
+            <mxPoint x="1090" y="400" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M6" value="6. STT for new media (if needed)" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;dashed=1;entryX=0.503;entryY=0.654;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.498;exitY=0.658;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="L4" target="L7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M7" value="7. Persist transcripts/artifacts" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;exitX=0.525;exitY=0.6;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.483;entryY=0.598;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="L4" target="L8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M8" value="8. Response with insights" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;exitX=0.514;exitY=0.578;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.519;entryY=0.574;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="L4" target="L3" edge="1">
+          <mxGeometry y="40" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="320" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M9" value="9. Deliver to frontend" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;exitX=0.471;exitY=0.592;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.501;entryY=0.594;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="L3" target="L2" edge="1">
+          <mxGeometry x="-0.0233" y="-39" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="330" />
+            </Array>
+            <mxPoint x="-39" y="39" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M10" value="10. Render insights (React)" style="endArrow=blockThin;edgeStyle=elbowEdgeStyle;exitX=0.495;exitY=0.598;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.533;entryY=0.6;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="L2" target="L1" edge="1">
+          <mxGeometry y="40" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="330" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

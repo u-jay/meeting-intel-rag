@@ -1,0 +1,123 @@
+<mxfile host="Electron" modified="2025-09-27T10:13:24.607Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" version="23.1.5" etag="JsUxoO6DJI0F2vVKhvR3" type="device">
+  <diagram id="deploy-azure" name="Deployment Diagram (Azure)">
+    <mxGraphModel dx="1457" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rg" value="Resource Group: rg-meeting-insights-prod" style="rounded=1;whiteSpace=wrap;html=1;container=1;collapsible=0;strokeColor=#4A86E8;fillColor=#DDEBF7;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="1510" height="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="iFZJFwDHE1muet-6wqCJ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="rg" source="afd" target="swa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="afd" value="Azure Front Door (WAF/CDN)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="rg" vertex="1">
+          <mxGeometry x="1000" y="40" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="swa" value="Azure Static Web Apps (React UI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#004085;" parent="rg" vertex="1">
+          <mxGeometry x="570" y="40" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="apim2" value="API Management (External)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="rg" vertex="1">
+          <mxGeometry x="150" y="40" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet" value="Virtual Network: vnet-meeting-insights" style="swimlane;startSize=28;rounded=1;container=1;horizontal=1;fillColor=#E2EFDA;strokeColor=#548235;" parent="rg" vertex="1">
+          <mxGeometry x="40" y="140" width="1450" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="snet-ing" value="Subnet: ingress-agw" style="swimlane;startSize=24;container=1;rounded=1;fillColor=#FCE5CD;strokeColor=#BF9000;" parent="vnet" vertex="1">
+          <mxGeometry x="20" y="50" width="440" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="agw" value="Application Gateway (optional)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="snet-ing" vertex="1">
+          <mxGeometry x="20" y="50" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="apim-vnet" value="APIM (internal VNet mode)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="snet-ing" vertex="1">
+          <mxGeometry x="20" y="140" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="snet-aks" value="Subnet: aks-system" style="swimlane;startSize=24;container=1;rounded=1;fillColor=#EAD1DC;strokeColor=#A64D79;" parent="vnet" vertex="1">
+          <mxGeometry x="480" y="50" width="480" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="aks" value="Azure Kubernetes Service - RAG Orchestrator - Embedding worker - Ingestion APIs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="snet-aks" vertex="1">
+          <mxGeometry x="20" y="50" width="420" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="snet-pe" value="Subnet: private-endpoints" style="swimlane;startSize=24;container=1;rounded=1;fillColor=#D9EAD3;strokeColor=#38761D;" parent="vnet" vertex="1">
+          <mxGeometry x="980" y="50" width="440" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="pe-openai" value="Private Endpoint: Azure OpenAI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cfe2f3;strokeColor=#3d85c6;" parent="snet-pe" vertex="1">
+          <mxGeometry x="20" y="50" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pe-search" value="Private Endpoint: Azure AI Search" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cfe2f3;strokeColor=#3d85c6;" parent="snet-pe" vertex="1">
+          <mxGeometry x="20" y="120" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pe-speech" value="Private Endpoint: Azure AI Speech" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cfe2f3;strokeColor=#3d85c6;" parent="snet-pe" vertex="1">
+          <mxGeometry x="20" y="190" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pe-blob" value="Private Endpoint: Blob Storage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cfe2f3;strokeColor=#3d85c6;" parent="snet-pe" vertex="1">
+          <mxGeometry x="20" y="260" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kv2" value="Azure Key Vault" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="vnet" vertex="1">
+          <mxGeometry x="710" y="415" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="aad" value="Microsoft Entra ID (Azure AD)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#548235;" parent="vnet" vertex="1">
+          <mxGeometry x="710" y="500" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="logs" value="Azure Monitor + Log Analytics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="vnet" vertex="1">
+          <mxGeometry x="710" y="590" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" style="" parent="vnet" target="kv2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="830" y="360" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c7" style="exitX=0.619;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="vnet" source="aks" target="storage" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="919.9963636363635" y="360" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="storage" value="Storage Account (Blob)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="vnet" vertex="1">
+          <mxGeometry x="400" y="730" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-speech" value="Azure AI Speech" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="vnet" vertex="1">
+          <mxGeometry x="210" y="650" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" style="exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="vnet" source="aks" target="ai-speech" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="712.2222222222222" y="370" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ai-search" value="Azure AI Search (Vector Index)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="vnet" vertex="1">
+          <mxGeometry x="90" y="550" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" style="exitX=0.321;exitY=0.996;exitDx=0;exitDy=0;exitPerimeter=0;" parent="vnet" source="aks" target="ai-search" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="578.5714285714284" y="360" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ai-openai" value="Azure OpenAI (GPT / Embeddings)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#b26b8a;" parent="vnet" vertex="1">
+          <mxGeometry x="30" y="420" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="vnet" source="aks" target="ai-openai" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mi" value="Managed Identity (AKS MSI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#548235;" parent="vnet" vertex="1">
+          <mxGeometry x="500" y="320" width="440" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iFZJFwDHE1muet-6wqCJ-1" value="" style="exitX=0.786;exitY=1.017;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="vnet" source="aks" target="mi">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="895" y="460" as="sourcePoint" />
+            <mxPoint x="899" y="595" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1" parent="rg" source="swa" target="apim2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="rg" source="apim2" target="agw" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="rg" source="agw" target="aks" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="rg" source="apim-vnet" target="aks" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
